@@ -1,13 +1,12 @@
 const router = require('express').Router();
-
-const { User } = require('../../models');
+const { User, Post } = require('../../models');
 
 
 // GET /api/users
 router.get('/', (req, res) => {
   // Access user model and run .findAll() method
   User.findAll({
-    attributes: { exclude: ['passwordgit a'] }
+    attributes: { exclude: ['password'] }
   })
     .then(dbUserData => res.json(dbUserData))
     .catch(err => {
@@ -26,7 +25,7 @@ router.get('/:id', (req, res) => {
   })
     .then(dbUserData => {
       if (!dbUserData) {
-        res.status(404).json({ message: 'No user found with this id ' });
+        res.status(404).json({ message: 'No user found with this id' });
         return;
       }
       res.json(dbUserData);
@@ -117,6 +116,5 @@ router.delete('/:id', (req, res) => {
       res.status(500).json(err);
     });
 });
-
 
 module.exports = router;

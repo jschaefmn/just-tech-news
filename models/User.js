@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
 const bcrypt = require('bcrypt');
+const sequelize = require('../config/connection');
 
 // create user model
 class User extends Model {
@@ -69,9 +69,7 @@ User.init(
     // use underscores instead of camel-casing
     underscored: true,
     // make it so the model name stays lowercase
-    modelName: 'user',
-    // turn on audto increment
-    autoIncrement: true
+    modelName: 'user'
   }
 );
 
